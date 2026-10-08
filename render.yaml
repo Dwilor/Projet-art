@@ -1,0 +1,20 @@
+# Aperçu en préproduction. Aucun encaissement réel.
+services:
+  - type: web
+    name: sirius-preview
+    runtime: node
+    repo: https://github.com/Dwilor/Projet-art
+    branch: main
+    plan: free
+    buildCommand: npm ci --no-audit --no-fund && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "24.19.0"
+      - key: SITE_MODE
+        value: preview
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: ADMIN_PASSWORD
+        generateValue: true
