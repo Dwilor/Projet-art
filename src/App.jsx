@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import { biography, money, works } from "./content";
 import { Admin } from "./Admin";
+import { RoomView } from "./RoomView";
 const Site = createContext(null);
 export function Icon({ name = "arrow", ...props }) {
   const paths = {
@@ -124,6 +125,7 @@ function Header() {
   const nav = [
     ["/originaux", "Originaux"],
     ["/reproductions", "Reproductions"],
+    ["/chez-moi", "Chez vous"],
     ["/a-propos", "À propos"],
     ["/contact", "Contact"],
   ];
@@ -820,6 +822,20 @@ function Detail({ slug, type }) {
                       ? "Cette œuvre est réservée temporairement."
                       : "Pour connaître les détails de cette composition, échangeons."}
                 </p>
+              </div>
+            )}
+            {((!p && data.mode === "preview") ||
+              (p?.status === "available" &&
+                (type === "print"
+                  ? p.variants?.some((item) => item.stock > 0)
+                  : p.stock > 0))) && (
+              <div className="detail-room-link">
+                <ButtonLink
+                  secondary
+                  href={`/chez-moi?oeuvre=${encodeURIComponent(p?.id || work.id)}${variant ? `&format=${encodeURIComponent(variant)}` : ""}`}
+                >
+                  Voir l’œuvre chez moi
+                </ButtonLink>
               </div>
             )}
             <TextLink href={`/contact?oeuvre=${work.reference}`}>
@@ -1551,11 +1567,12 @@ function NotFound() {
   );
 }
 function Route() {
-  const { url } = useContext(Site);
+  const { url, data } = useContext(Site);
   const path = url.split("?")[0].replace(/\/$/, "") || "/";
   if (path === "/") return <Home />;
   if (path === "/originaux") return <Catalog type="original" />;
   if (path === "/reproductions") return <Catalog type="print" />;
+  if (path === "/chez-moi") return <RoomView data={data} url={url} />;
   if (path.startsWith("/originaux/"))
     return <Detail slug={decodeURIComponent(path.slice(11))} type="original" />;
   if (path.startsWith("/reproductions/"))
@@ -1626,6 +1643,7 @@ export function App({ initialData, initialUrl = "/" }) {
       "/": "Sirius — La matière, en équilibre.",
       "/originaux": "Œuvres originales — Sirius",
       "/reproductions": "Reproductions — Sirius",
+      "/chez-moi": "Voir l’œuvre chez moi — Sirius",
       "/a-propos": "À propos — Sirius",
       "/contact": "Me contacter — Sirius",
       "/panier": "Votre panier — Sirius",

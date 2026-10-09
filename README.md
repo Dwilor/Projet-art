@@ -43,6 +43,16 @@ Routes : `/`, `/originaux`, `/reproductions`, `/originaux/:slug`, `/reproduction
 
 Une fiche informative nécessite un titre et une vue complète. Une fiche disponible exige en plus des caractéristiques, un prix public positif en centimes EUR, un stock réel et une livraison configurée. Chaque original a un stock maximal de 1. Chaque format de reproduction conserve son prix, son stock, ses dimensions, son papier, son procédé et la validation de son épreuve. Les hypothèses HT du simulateur ne sont pas importées comme prix TTC.
 
+## Voir l’œuvre chez moi
+
+Le simulateur est accessible depuis « Chez vous » dans la navigation, les fiches des œuvres et [la page publique](https://sirius-preview.onrender.com/chez-moi). Importer une photo de son intérieur, choisir une composition, puis la déplacer avec la souris, au doigt ou avec les flèches du clavier. La poignée et le curseur ajustent sa taille ; « Recentrer » conserve cette taille. L’aperçu peut être téléchargé en JPG.
+
+Les photos JPG, PNG, WebP et AVIF sont décodées et préparées uniquement dans le navigateur, avec prise en compte de l’orientation de l’appareil. Elles ne sont ni envoyées au serveur ni enregistrées dans le stockage du navigateur. Les URL temporaires sont libérées lors d’un remplacement, d’un retrait ou d’une sortie du simulateur. L’import accepte au maximum 20 Mo et 50 mégapixels, puis réduit le côté le plus long à 2560 pixels pour limiter la mémoire utilisée.
+
+En production, la sélection contient les originaux et variantes de reproduction en stock. Les formats reprennent leurs dimensions publiées, en conservant l’image entière. En préproduction, les compositions éditoriales proposent trois tailles d’aperçu sans dimensions commerciales inventées. L’échelle dans une photo non calibrée reste indicative ; un mur photographié de face donne une meilleure lecture des proportions.
+
+`npm run test:room` vérifie l’import privé, les fichiers invalides, l’orientation EXIF, les formats, les mouvements et redimensionnements, le tactile, le clavier, l’export, l’accessibilité et l’affichage responsive avec des données de recette isolées.
+
 ## Administration
 
 L’espace `/admin` permet de créer et modifier les fiches, publier ou archiver, sélectionner jusqu’à trois originaux pour l’accueil, importer les médias, gérer les variantes, la biographie, les informations légales, les destinations et frais de livraison. Il permet de consulter les contacts et commandes, réessayer les envois de contact, enregistrer une expédition, rembourser une commande de test et exporter produits, contacts et commandes en JSON.

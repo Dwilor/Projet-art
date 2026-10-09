@@ -12,6 +12,7 @@
     "start": "NODE_ENV=production node --env-file-if-exists=.env server/index.js",
     "test": "node --test tests/*.test.js",
     "test:e2e": "node scripts/check-browser.mjs",
+    "test:room": "node scripts/check-room.mjs",
     "backup": "node --env-file-if-exists=.env scripts/backup.mjs",
     "format": "prettier --write src server scripts tests vite.config.js"
   },

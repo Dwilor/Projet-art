@@ -701,6 +701,7 @@ app.get("/sitemap.xml", (_req, res) => {
     "/reproductions",
     "/a-propos",
     "/contact",
+    "/chez-moi",
     "/livraison-retours",
     ...publicData().products.map(
       (p) => `/${p.type === "print" ? "reproductions" : "originaux"}/${p.slug}`,
@@ -767,6 +768,7 @@ app.use(async (req, res, next) => {
       "/": "Sirius — La matière, en équilibre.",
       "/originaux": "Œuvres originales — Sirius",
       "/reproductions": "Reproductions — Sirius",
+      "/chez-moi": "Voir l’œuvre chez moi — Sirius",
       "/a-propos": "À propos — Sirius",
       "/contact": "Me contacter — Sirius",
       "/panier": "Votre panier — Sirius",
