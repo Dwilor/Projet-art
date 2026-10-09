@@ -2685,7 +2685,7 @@ main:focus {
     gap: 28px;
   }
   .room-work-list {
-    max-height: 330px;
+    max-height: 380px;
   }
   .room-options .room-formats {
     padding-top: 22px;

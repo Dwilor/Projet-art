@@ -346,6 +346,15 @@ try {
     fullPage: true,
   });
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.evaluate(() => window.scrollTo(0, 0));
+  const listBox = await page.locator(".room-work-list").boundingBox();
+  for (const option of await page.locator(".room-work-option").all()) {
+    const box = await option.boundingBox();
+    assert.ok(
+      box.y + box.height <= listBox.y + listBox.height + 1,
+      "Les cinq références d’aperçu doivent rester entièrement visibles sur mobile",
+    );
+  }
   await page.screenshot({
     path: "test-results/room-mobile.png",
     fullPage: true,
@@ -468,6 +477,7 @@ try {
     "true",
   );
   assert.equal(await page.locator(".room-formats button").count(), 1);
+  assert.deepEqual(errors, []);
   console.log(
     "Catalogue publié : formats réels, stocks, présélection et entrée depuis une fiche validés.",
   );
