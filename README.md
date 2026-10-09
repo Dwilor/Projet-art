@@ -2,6 +2,12 @@
 
 Portfolio marchand francophone réalisé à partir du brief fourni le 8 octobre 2026. React 19, Vite, rendu HTML côté serveur avec Express et stockage SQLite (Node.js 24). Cette base appartient au dépôt et ne dépend d’aucun compte personnel du développeur.
 
+## Consulter le site
+
+[Ouvrir l’aperçu Sirius](https://sirius-preview.onrender.com).
+
+L’aperçu est hébergé sur Render et suit la branche `main` de ce dépôt. Les ventes restent désactivées. Sur la formule gratuite, le service peut se mettre en veille : son premier chargement peut prendre environ une minute. Les données enregistrées utilisent un disque éphémère. Consulter [les détails de l’hébergement](DEPLOY_RENDER.md) avant de publier un catalogue marchand.
+
 ## Démarrer
 
 ```bash

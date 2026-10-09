@@ -6,6 +6,7 @@ services:
     repo: https://github.com/Dwilor/Projet-art
     branch: main
     plan: free
+    region: frankfurt
     buildCommand: npm ci --no-audit --no-fund && npm run build
     startCommand: npm start
     healthCheckPath: /api/health
